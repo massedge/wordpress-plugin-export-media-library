@@ -14,7 +14,7 @@ class MassEdgeWordPressPluginExportMediaLibraryDependencyCheck {
         $this->pluginPath = $pluginPath;
     }
 
-    function check() {
+    function run() {
         // ensure minimum php version
         if (version_compare(PHP_VERSION, self::MINIMUM_PHP_VERSION_REQUIRED, '<')) {
             return self::checkFailed(sprintf(
