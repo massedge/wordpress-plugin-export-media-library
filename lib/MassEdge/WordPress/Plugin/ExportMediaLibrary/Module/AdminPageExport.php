@@ -8,6 +8,7 @@ class AdminPageExport extends Base {
     const FIELD_SUBMIT_DOWNLOAD = 'massedge-wp-plugin-eml-ape-submit-download';
     const FIELD_NONCE_DOWNLOAD_ACTION = 'massedge-wp-eml-ape-download';
     const FIELD_FOLDER_STRUCTURE = 'folder_structure';
+    const FIELD_COMPRESS = 'compress';
 
     const FOLDER_STRUCTURE_NESTED = 'nested';
     const FOLDER_STRUCTURE_FLAT = 'flat';
@@ -47,9 +48,12 @@ class AdminPageExport extends Base {
                 ? self::FOLDER_STRUCTURE_NESTED
                 : $_POST['folder_structure'];
 
+            // set compress option
+            $compress = !empty($_POST[self::FIELD_COMPRESS]);
+
             try {
                 // export
-                $this->export($filename, $folderStructure);
+                $this->export($filename, $folderStructure, $compress);
             } catch (\Exception $ex) {
                 add_action('admin_notices', function() use ($ex) {
                     echo sprintf('<div class="error"><p>%s</p></div>', esc_html($ex->getMessage()));
@@ -75,9 +79,19 @@ class AdminPageExport extends Base {
                 <th>Folder Structure</th>
                 <td>
                     <select name="<?php echo esc_attr(self::FIELD_FOLDER_STRUCTURE) ?>">
-                        <option value="<?php echo esc_attr(self::FOLDER_STRUCTURE_FLAT) ?>">Single folder</option>
+                        <option value="<?php echo esc_attr(self::FOLDER_STRUCTURE_FLAT) ?>">Single folder with all files</option>
                         <option value="<?php echo esc_attr(self::FOLDER_STRUCTURE_NESTED) ?>">Nested folders</option>
                     </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Compress</th>
+                <td>
+                    <select name="<?php echo esc_attr(self::FIELD_COMPRESS) ?>">
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                    <p class="description">Enabling compression can decrease the size of the zip download, but requires more processing on the server.</p>
                 </td>
             </tr>
         </table>
@@ -91,15 +105,14 @@ class AdminPageExport extends Base {
         echo ob_get_clean();
     }
 
-    function export($exportName, $folderStructure) {
+    function export($exportName, $folderStructure, $compress) {
         $exportFilename = "{$exportName}.zip";
         $basedir = self::getUploadBasedir();
 
         # create a new zipstream object
         $zip = new ZipStream($exportFilename, [
-            // WORKAROUND: treat each file as large in order to use STORE method (and not deflate)
-            // It is assumed that most items will be images and/or videos, so compression isn't really necessary
-            ZipStream::OPTION_LARGE_FILE_SIZE => 1,
+            // WORKAROUND: treat each file as large in order to use STORE method, thereby avoiding compression
+            ZipStream::OPTION_LARGE_FILE_SIZE => ($compress) ? 20 * 1024 * 1024 : 1,
         ]);
 
         $query = new \WP_Query();
