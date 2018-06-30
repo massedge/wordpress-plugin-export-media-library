@@ -3,8 +3,8 @@
 Plugin Name: Export Media Library
 Plugin URI: https://github.com/massedge/wordpress-plugin-export-media-library
 Description: Allows admins to export media library files as a compressed zip archive.
-Version: 0.0.1
-Author: MassEdge
+Version: 1.0.0
+Author: Mass Edge Inc.
 Author URI: https://www.massedge.com/
 License: GPL2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
