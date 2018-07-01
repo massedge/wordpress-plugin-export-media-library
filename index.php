@@ -6,8 +6,8 @@ Description: Allows admins to export media library files as a compressed zip arc
 Version: 1.0.0
 Author: Mass Edge Inc.
 Author URI: https://www.massedge.com/
-License: GPL2
-License URI: https://www.gnu.org/licenses/gpl-2.0.html
+License: GPL3
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
 */
 
 if (!defined('ABSPATH')) exit; // Exit if accessed directly
