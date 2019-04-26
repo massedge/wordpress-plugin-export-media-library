@@ -23,6 +23,7 @@ Allows users to export media library files as a compressed zip archive.
 == Screenshots ==
 
 1. Export Media Library admin page
+2. Real Media Library plugin compatibility
 
 == Changelog ==
 
