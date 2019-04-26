@@ -15,6 +15,7 @@ class Plugin {
     function registerHooks() {
         $this->modules = [
             new Module\AdminPageExport(),
+            new Module\RealMediaLibrary()
         ];
 
         // register module hooks

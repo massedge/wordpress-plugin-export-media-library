@@ -105,7 +105,7 @@ class AdminPageExport extends Base {
         echo ob_get_clean();
     }
 
-    function export($exportName, $folderStructure, $compress) {
+    function export($exportName, $folderStructure, $compress, $overrides = []) {
         $exportFilename = "{$exportName}.zip";
         $basedir = self::getUploadBasedir();
 
@@ -116,12 +116,12 @@ class AdminPageExport extends Base {
         ]);
 
         $query = new \WP_Query();
-        $attachmentIds = $query->query([
+        $attachmentIds = $query->query(array_merge([
             'post_type' => 'attachment',
             'post_status' => 'inherit',
             'fields' => 'ids',
             'posts_per_page' => -1,
-        ]);
+        ], $overrides));
 
         $flatFilenames = [];
 
@@ -144,6 +144,7 @@ class AdminPageExport extends Base {
                             $file = $attachmentPath;
                         }
                     }
+                    $file = apply_filters('massedge/wp/eml/export/nested/file', $file, $attachmentId, $attachmentIds, $attachmentPath);
                     break;
                 
                 case self::FOLDER_STRUCTURE_FLAT:
@@ -168,7 +169,7 @@ class AdminPageExport extends Base {
                 continue;
             }
         }
-
+        
         # finish the zip stream
         $zip->finish();
     }
