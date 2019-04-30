@@ -53,6 +53,15 @@ class AdminPageExport extends Base {
                     'filename' => $filename,
                     'folder_structure' => $folderStructure,
                     'compress' => $compress,
+                    'add_attachment_callback' => function($value, $params) {
+                        return apply_filters('massedge-wp-eml/export/add_attachment', $value, $params);
+                    },
+                    'add_attachment_failed_callback' => function($params) {
+                        do_action('massedge-wp-eml/export/add_attachment_failed', $params);
+                    },
+                    'add_extra_files_callback' => function($params) {
+                        do_action('massedge-wp-eml/export/add_extra_files', $params);
+                    }
                 ]);
             } catch (\Exception $ex) {
                 add_action('admin_notices', function() use ($ex) {
