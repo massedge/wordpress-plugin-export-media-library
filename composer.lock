@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "511a8fecdd9d08cdc2070afa9b681b08",
+    "content-hash": "d447c0c4630f520ac1a5675f2a165ae0",
     "packages": [
         {
             "name": "maennchen/zipstream-php",
-            "version": "1.0.0",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/maennchen/ZipStream-PHP.git",
-                "reference": "ecb6d17240792073fa10617ce231bd43ba344df5"
+                "reference": "272cab6f9b7a7e80248ec59a8d114ca197458623"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/maennchen/ZipStream-PHP/zipball/ecb6d17240792073fa10617ce231bd43ba344df5",
-                "reference": "ecb6d17240792073fa10617ce231bd43ba344df5",
+                "url": "https://api.github.com/repos/maennchen/ZipStream-PHP/zipball/272cab6f9b7a7e80248ec59a8d114ca197458623",
+                "reference": "272cab6f9b7a7e80248ec59a8d114ca197458623",
                 "shasum": ""
             },
             "require": {
@@ -29,7 +29,8 @@
             "require-dev": {
                 "ext-zip": "*",
                 "guzzlehttp/guzzle": ">= 6.3",
-                "phpunit/phpunit": ">= 5.7"
+                "mikey179/vfsstream": "^1.6",
+                "phpunit/phpunit": ">= 7.5"
             },
             "type": "library",
             "autoload": {
@@ -64,7 +65,7 @@
                 "stream",
                 "zip"
             ],
-            "time": "2018-11-25T17:21:54+00:00"
+            "time": "2019-04-30T17:14:47+00:00"
         },
         {
             "name": "myclabs/php-enum",

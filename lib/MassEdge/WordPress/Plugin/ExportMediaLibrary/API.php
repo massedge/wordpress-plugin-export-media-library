@@ -129,8 +129,7 @@ class API {
             }
             
             try {
-                $file = new ZipFile($zip, $result['name'], $fileOptions);
-                $file->processPath($result['path']);
+                $zip->addFileFromPath($result['name'], $result['path'], $fileOptions);
             } catch (\Exception $ex) {
                 $options['add_attachment_failed_callback']([
                     'name' => $result['name'],
@@ -155,8 +154,7 @@ class API {
                     $fileOptions->setTime($date);
                 }
 
-                $file = new ZipFile($zip, $name, $fileOptions);
-                $file->processPath($path);
+                $zip->addFileFromPath($name, $path, $fileOptions);
             },
         ]);
 
