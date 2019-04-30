@@ -91,14 +91,20 @@ class API {
                 $file = ($options['root_path'])
                     ? "{$options['root_path']}/{$file}"
                     : "{$file}";
+
+                $time = @filectime($attachmentPath);
             } else {
                 $file = null;
+                $time = false;
             }
 
             // opportunity to manipulate adding of attachment to zip
             $result = $options['add_attachment_callback']([
                 'name' => $file,
                 'path' => $attachmentPath,
+                'options' => [
+                    'time' => $time,
+                ],
             ], [
                 'attachment_id' => $attachmentId,
             ]);
@@ -107,11 +113,12 @@ class API {
             if (!$result || empty($result['name']) || empty($result['path'])) continue;
             
             try {
-                $zip->addFileFromPath($result['name'], $result['path']);
+                $zip->addFileFromPath($result['name'], $result['path'], $result['options']);
             } catch (\Exception $ex) {
                 $options['add_attachment_failed_callback']([
                     'name' => $result['name'],
                     'path' => $result['path'],
+                    'options' => $result['options'],
                     'exception' => $ex,
                 ]);
 
@@ -122,8 +129,8 @@ class API {
 
         // give opportunity to add extra files before finishing the stream
         $options['add_extra_files_callback']([
-            'add_file_callback' => function($name, $path, $opt) use ($zip) {
-                return $zip->addFileFromPath($name, $path, $opt);
+            'add_file_callback' => function($name, $path, array $options = []) use ($zip) {
+                return $zip->addFileFromPath($name, $path, $options);
             },
         ]);
 
