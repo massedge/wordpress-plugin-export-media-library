@@ -3,6 +3,10 @@
 namespace MassEdge\WordPress\Plugin\ExportMediaLibrary;
 
 use ZipStream\ZipStream;
+use ZipStream\File as ZipFile;
+use ZipStream\Option\Archive as ArchiveOptions;
+use ZipStream\Option\File as FileOptions;
+use ZipStream\Option\Method as MethodOptions;
 
 class API {
     const FOLDER_STRUCTURE_NESTED = 'nested';
@@ -42,11 +46,15 @@ class API {
         // ensure path doesn't end in slash
         if ($options['root_path']) $options['root_path'] = rtrim($options['root_path'], '/\\');
 
+        // compression method
+        $compressionMethod = new MethodOptions(
+            ($options['compress']) ? MethodOptions::DEFLATE : MethodOptions::STORE
+        );
+
         // create a new zipstream object
-        $zip = new ZipStream($options['filename'], [
-            // WORKAROUND: treat each file as large in order to use STORE method, thereby avoiding compression
-            ZipStream::OPTION_LARGE_FILE_SIZE => ($options['compress']) ? 20 * 1024 * 1024 : 1,
-        ]);
+        $archiveOptions = new ArchiveOptions();
+        $archiveOptions->setSendHttpHeaders(true);
+        $zip = new ZipStream($options['filename'], $archiveOptions);
 
         $query = new \WP_Query();
         $attachmentIds = $query->query($options['query_args']);
@@ -111,9 +119,18 @@ class API {
 
             // skip attachment if result not specified
             if (!$result || empty($result['name']) || empty($result['path'])) continue;
+
+            $fileOptions = new FileOptions();
+            $fileOptions->defaultTo($archiveOptions);
+            if (!$options['compress']) $fileOptions->setMethod($compressionMethod);
+            if (!empty($result['options']['time'])) {
+                $date = new \DateTime('@' . $result['options']['time']);
+                $fileOptions->setTime($date);
+            }
             
             try {
-                $zip->addFileFromPath($result['name'], $result['path'], $result['options']);
+                $file = new ZipFile($zip, $result['name'], $fileOptions);
+                $file->processPath($result['path']);
             } catch (\Exception $ex) {
                 $options['add_attachment_failed_callback']([
                     'name' => $result['name'],
@@ -129,8 +146,17 @@ class API {
 
         // give opportunity to add extra files before finishing the stream
         $options['add_extra_files_callback']([
-            'add_file_callback' => function($name, $path, array $options = []) use ($zip) {
-                return $zip->addFileFromPath($name, $path, $options);
+            'add_file_callback' => function($name, $path, array $options = []) use ($zip, $archiveOptions, $compressionMethod) {
+                $fileOptions = new FileOptions();
+                $fileOptions->defaultTo($archiveOptions);
+                $fileOptions->setMethod($compressionMethod);
+                if (!empty($options['time'])) {
+                    $date = new \DateTime('@' . $options['time']);
+                    $fileOptions->setTime($date);
+                }
+
+                $file = new ZipFile($zip, $name, $fileOptions);
+                $file->processPath($path);
             },
         ]);
 

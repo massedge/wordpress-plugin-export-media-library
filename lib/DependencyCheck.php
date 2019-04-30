@@ -3,7 +3,7 @@
 class MassEdgeWordPressPluginExportMediaLibraryDependencyCheck {
     const PLUGIN_NAME = 'Export Media Library';
 
-    const MINIMUM_PHP_VERSION_REQUIRED = '5.6';
+    const MINIMUM_PHP_VERSION_REQUIRED = '7.1';
 
     const MBSTRING_EXTENSION_NAME = 'mbstring';
 
