@@ -26,6 +26,10 @@ Allows users to export media library files as a compressed zip archive.
 
 == Changelog ==
 
+= 1.1.0 =
+* expose API::export function for easier reuse by 3rd-party code
+* set last modify time for each file in zip to match the timestamp on disk
+
 = 1.0.1 =
 Fixed title of plugin in readme.
 
