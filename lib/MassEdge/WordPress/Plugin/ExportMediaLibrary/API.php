@@ -54,6 +54,7 @@ class API {
         // create a new zipstream object
         $archiveOptions = new ArchiveOptions();
         $archiveOptions->setSendHttpHeaders(true);
+        $archiveOptions->setFlushOutput(true);
         $zip = new ZipStream($options['filename'], $archiveOptions);
 
         $query = new \WP_Query();
