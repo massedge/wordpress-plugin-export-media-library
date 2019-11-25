@@ -4,33 +4,33 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fe9624c85f0ff41a34d7c72e43c77f72",
+    "content-hash": "8085eb71a7882a7f6bcbcf68fc3668d5",
     "packages": [
         {
             "name": "maennchen/zipstream-php",
-            "version": "dev-php-7.0-compatibility",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/massedge/ZipStream-PHP.git",
-                "reference": "9b0f04a9f158454dd579d11bff191427e4de0525"
+                "url": "https://github.com/maennchen/ZipStream-PHP.git",
+                "reference": "6373eefe0b3274d7b702d81f2c99aa977ff97dc2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/massedge/ZipStream-PHP/zipball/9b0f04a9f158454dd579d11bff191427e4de0525",
-                "reference": "9b0f04a9f158454dd579d11bff191427e4de0525",
+                "url": "https://api.github.com/repos/maennchen/ZipStream-PHP/zipball/6373eefe0b3274d7b702d81f2c99aa977ff97dc2",
+                "reference": "6373eefe0b3274d7b702d81f2c99aa977ff97dc2",
                 "shasum": ""
             },
             "require": {
                 "ext-mbstring": "*",
                 "myclabs/php-enum": "^1.5",
-                "php": ">= 7.0",
+                "php": ">= 7.1",
                 "psr/http-message": "^1.0"
             },
             "require-dev": {
                 "ext-zip": "*",
                 "guzzlehttp/guzzle": ">= 6.3",
                 "mikey179/vfsstream": "^1.6",
-                "phpunit/phpunit": "^4.0"
+                "phpunit/phpunit": ">= 7.5"
             },
             "type": "library",
             "autoload": {
@@ -38,6 +38,7 @@
                     "ZipStream\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -47,12 +48,12 @@
                     "email": "pabs@pablotron.org"
                 },
                 {
-                    "name": "Jonatan Männchen",
-                    "email": "jonatan@maennchen.ch"
-                },
-                {
                     "name": "Jesse Donat",
                     "email": "donatj@gmail.com"
+                },
+                {
+                    "name": "Jonatan Männchen",
+                    "email": "jonatan@maennchen.ch"
                 },
                 {
                     "name": "András Kolesár",
@@ -64,10 +65,7 @@
                 "stream",
                 "zip"
             ],
-            "support": {
-                "source": "https://github.com/massedge/ZipStream-PHP/tree/dev-php-7.0-compatibility"
-            },
-            "time": "2019-04-30T19:51:44+00:00"
+            "time": "2019-07-17T11:01:58+00:00"
         },
         {
             "name": "myclabs/php-enum",
@@ -168,13 +166,11 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "maennchen/zipstream-php": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=7.0"
+        "php": ">=7.1"
     },
     "platform-dev": []
 }
