@@ -3,6 +3,7 @@
 namespace MassEdge\WordPress\Plugin\ExportMediaLibrary\Module;
 
 use MassEdge\WordPress\Plugin\ExportMediaLibrary\API;
+use ByteUnits;
 
 class AdminPageExport extends Base {
     const FIELD_SUBMIT_DOWNLOAD = 'massedge-wp-plugin-eml-ape-submit-download';
@@ -74,6 +75,29 @@ class AdminPageExport extends Base {
         });
     }
 
+    static function getApproximateExportSize() {
+        $query = new \WP_Query();
+        $attachmentIds = $query->query(API::defaultExportOptions()['query_args']);
+
+        $totalSize = 0;
+        foreach($attachmentIds as $attachmentId) {
+            // get attachment path
+            $attachmentPath = get_attached_file($attachmentId);
+            if (!$attachmentPath) continue;
+
+            // TODO: account for 'massedge-wp-eml/export/add_attachment' filter
+
+            // get size
+            $size = @filesize($attachmentPath);
+            if (false === $size) continue;
+
+            // add size
+            $totalSize += $size;
+        }
+
+        return $totalSize;
+    }
+
     function page() {
         ob_start();
         ?>
@@ -101,6 +125,12 @@ class AdminPageExport extends Base {
                         <option value="1">Yes</option>
                     </select>
                     <p class="description">Enabling compression can decrease the size of the zip download, but requires more processing on the server.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Approximate Size</th>
+                <td>
+                    <?php echo ByteUnits\Metric::bytes(self::getApproximateExportSize())->format() ?>
                 </td>
             </tr>
         </table>

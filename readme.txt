@@ -4,7 +4,7 @@ Tags: export media library, download media library, media library, export, downl
 Requires at least: 4.7.10
 Tested up to: 5.3
 Requires PHP: 7.1
-Stable tag: 3.0.0
+Stable tag: 3.1.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -25,6 +25,9 @@ Allows users to export media library files as a compressed zip archive.
 1. Export Media Library admin page
 
 == Changelog ==
+
+= 3.1.0 =
+* display approximate size of export
 
 = 3.0.0 =
 * bumped minimum php version to 7.1
