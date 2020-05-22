@@ -14,7 +14,8 @@ if (!defined('ABSPATH')) exit; // Exit if accessed directly
 
 // ensure all dependencies met before fully initializing plugin code
 require 'lib/DependencyCheck.php';
-if (!(new MassEdgeWordPressPluginExportMediaLibraryDependencyCheck(__FILE__))->run()) return;
+$massEdgeWordPressPluginEmlDependencyCheck = new MassEdgeWordPressPluginExportMediaLibraryDependencyCheck(__FILE__);
+if (!$massEdgeWordPressPluginEmlDependencyCheck->run()) return;
 
 define('MASSEDGE_WORDPRESS_PLUGIN_EXPORT_MEDIA_LIBRARY_PLUGIN_PATH', __FILE__);
 require 'run.php';
