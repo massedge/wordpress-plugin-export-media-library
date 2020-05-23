@@ -5,8 +5,6 @@ class MassEdgeWordPressPluginExportMediaLibraryDependencyCheck {
 
     const MINIMUM_PHP_VERSION_REQUIRED = '7.1';
 
-    const MBSTRING_EXTENSION_NAME = 'mbstring';
-
     private $pluginPath;
     private $adminNoticePluginDisabledMessage;
 
@@ -23,17 +21,6 @@ class MassEdgeWordPressPluginExportMediaLibraryDependencyCheck {
                 self::MINIMUM_PHP_VERSION_REQUIRED,
                 PHP_VERSION
             ));
-        }
-
-        foreach(array(self::MBSTRING_EXTENSION_NAME) as $extensionName) {
-            // ensure extension is enabled
-            if (!extension_loaded($extensionName)) {
-                return self::checkFailed(sprintf(
-                    '%s plugin requires the \'%s\' extension to be enabled in you PHP installation.',
-                    self::PLUGIN_NAME,
-                    $extensionName
-                ));
-            }
         }
 
         return true;
