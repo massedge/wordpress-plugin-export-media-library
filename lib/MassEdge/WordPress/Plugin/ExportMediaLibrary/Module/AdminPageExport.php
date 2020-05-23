@@ -35,7 +35,7 @@ class AdminPageExport extends Base {
             if (!check_admin_referer(self::FIELD_NONCE_DOWNLOAD_ACTION)) return;
 
             // create name for download
-            $filename = sprintf('%s_media_library_export.zip', current_time('Y-m-d_H-i-s'));
+            $filename = self::getExportFilename(get_option('blogname'));
 
             // set folder structure
             $folderStructure = (
@@ -112,5 +112,19 @@ class AdminPageExport extends Base {
 </div>
         <?php
         echo ob_get_clean();
+    }
+
+    private static function getExportFilename($blogname) {
+        $name = mb_strtolower($blogname);
+        $name = preg_replace('/\s+/', '_', $name);
+        $name = preg_replace('/[^\w\d_]/iu','', $name);
+        
+        $unsanatizedFilename = implode('-', [
+            'media_library_export',
+            $name,
+            current_time('Y_m_d_H_i_s', true),
+        ]) . '.zip';
+
+        return sanitize_file_name($unsanatizedFilename);
     }
 }
