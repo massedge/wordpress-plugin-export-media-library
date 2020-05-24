@@ -28,6 +28,7 @@ class API {
             'add_attachment_callback' => function($value, $params) { return $value; },
             'add_attachment_failed_callback' => function($params) {},
             'add_extra_files_callback' => function($params) {},
+            'purge_output_buffers' => true,
         ];
     }
 
@@ -50,6 +51,11 @@ class API {
         $compressionMethod = new MethodOptions(
             ($options['compress']) ? MethodOptions::DEFLATE : MethodOptions::STORE
         );
+        
+        // clear output buffers
+        if ($options['purge_output_buffers']) {
+            while (ob_get_level()) if (!ob_end_clean()) break;
+        }
 
         // create a new zipstream object
         $archiveOptions = new ArchiveOptions();

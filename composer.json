@@ -10,7 +10,7 @@
 	}],
 	"require": {
 		"php": ">=7.1",
-		"maennchen/zipstream-php": "dev-feature/polyfill-mbstring"
+		"maennchen/zipstream-php": "dev-massedge-wp-eml"
 	},
 	"autoload": {
 		"psr-4": {"": "lib/"}

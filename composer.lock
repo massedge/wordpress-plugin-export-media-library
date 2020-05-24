@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8ae4d4d264dfebd4995a0e15945f6469",
+    "content-hash": "5f6e877ca3a11d671eabd920fa87239e",
     "packages": [
         {
             "name": "maennchen/zipstream-php",
-            "version": "dev-feature/polyfill-mbstring",
+            "version": "dev-massedge-wp-eml",
             "source": {
                 "type": "git",
                 "url": "https://github.com/massedge/ZipStream-PHP.git",
-                "reference": "409993f2df094468a7e5c9a56aecaf777c6d25da"
+                "reference": "634cfb84efd6baeda152e721150c5aafa57c8469"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/massedge/ZipStream-PHP/zipball/409993f2df094468a7e5c9a56aecaf777c6d25da",
-                "reference": "409993f2df094468a7e5c9a56aecaf777c6d25da",
+                "url": "https://api.github.com/repos/massedge/ZipStream-PHP/zipball/634cfb84efd6baeda152e721150c5aafa57c8469",
+                "reference": "634cfb84efd6baeda152e721150c5aafa57c8469",
                 "shasum": ""
             },
             "require": {
@@ -65,9 +65,9 @@
                 "zip"
             ],
             "support": {
-                "source": "https://github.com/massedge/ZipStream-PHP/tree/feature/polyfill-mbstring"
+                "source": "https://github.com/massedge/ZipStream-PHP/tree/massedge-wp-eml"
             },
-            "time": "2020-05-23T01:04:21+00:00"
+            "time": "2020-05-24T01:03:16+00:00"
         },
         {
             "name": "myclabs/php-enum",
