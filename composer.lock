@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/massedge/ZipStream-PHP.git",
-                "reference": "634cfb84efd6baeda152e721150c5aafa57c8469"
+                "reference": "2c3cc0c80e0191b0017c0f4adb48f01303deb46f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/massedge/ZipStream-PHP/zipball/634cfb84efd6baeda152e721150c5aafa57c8469",
-                "reference": "634cfb84efd6baeda152e721150c5aafa57c8469",
+                "url": "https://api.github.com/repos/massedge/ZipStream-PHP/zipball/2c3cc0c80e0191b0017c0f4adb48f01303deb46f",
+                "reference": "2c3cc0c80e0191b0017c0f4adb48f01303deb46f",
                 "shasum": ""
             },
             "require": {
@@ -67,7 +67,7 @@
             "support": {
                 "source": "https://github.com/massedge/ZipStream-PHP/tree/massedge-wp-eml"
             },
-            "time": "2020-05-24T01:03:16+00:00"
+            "time": "2020-05-28T17:18:27+00:00"
         },
         {
             "name": "myclabs/php-enum",
