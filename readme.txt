@@ -2,9 +2,9 @@
 Contributors: andrej.pavlovic
 Tags: export media library, download media library, media library, export, download
 Requires at least: 4.7.10
-Tested up to: 5.3
+Tested up to: 6.0
 Requires PHP: 7.1
-Stable tag: 3.0.1
+Stable tag: 3.1.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -20,11 +20,20 @@ Allows users to export media library files as a compressed zip archive.
 2. Go to Media -> Export via the admin menu to access the Export Media Library page.
 3. Adjust form options before proceeding with the export.
 
+== Frequently Asked Questions ==
+
+= I am unable to open the generated zip file
+Please try using the [7-Zip](https://www.7-zip.org/) extractor utility if you are having trouble extracting the downloaded zip file. It's free and open source.
+
 == Screenshots ==
 
 1. Export Media Library admin page
 
 == Changelog ==
+
+= 3.1.0 =
+* Bumped `maennchen/ZipStream-PHP` version to `2.1.0`
+* Added FAQ
 
 = 3.0.1 =
 * adjust syntax to ensure plugin compatibility check can run on older php versions (eg. PHP 5.2)

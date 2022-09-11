@@ -1,7 +1,7 @@
 {
 	"name":        "massedge/wordpress-plugin-export-media-library",
 	"description": "Wordpress plugin that allows admins to export media library files as a compressed zip archive.",
-	"version":     "3.0.1",
+	"version":     "3.1.0",
 	"type":        "wordpress-plugin",
 	"license":     "GPL-3.0",
 	"require": {
