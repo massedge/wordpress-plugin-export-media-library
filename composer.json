@@ -4,13 +4,9 @@
 	"version":     "3.0.1",
 	"type":        "wordpress-plugin",
 	"license":     "GPL-3.0",
-	"repositories": [{
-		"type": "vcs",
-		"url": "https://github.com/massedge/ZipStream-PHP"
-	}],
 	"require": {
 		"php": ">=7.1",
-		"maennchen/zipstream-php": "dev-massedge-wp-eml"
+		"maennchen/zipstream-php": "2.1.0"
 	},
 	"autoload": {
 		"psr-4": {"": "lib/"}
