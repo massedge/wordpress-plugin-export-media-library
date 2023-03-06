@@ -6,7 +6,7 @@
 	"license":     "GPL-3.0",
 	"require": {
 		"php": ">=7.4",
-		"maennchen/zipstream-php": "2.1.0"
+		"maennchen/zipstream-php": "2.2.*"
 	},
 	"autoload": {
 		"psr-4": {"": "lib/"}
