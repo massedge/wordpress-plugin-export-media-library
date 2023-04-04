@@ -2,9 +2,9 @@
 Contributors: andrej.pavlovic
 Tags: export media library, download media library, media library, export, download
 Requires at least: 4.7.10
-Tested up to: 6.0
+Tested up to: 6.2
 Requires PHP: 7.4
-Stable tag: 4.0.0
+Stable tag: 4.0.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -30,6 +30,9 @@ Please try using the [7-Zip](https://www.7-zip.org/) extractor utility if you ar
 1. Export Media Library admin page
 
 == Changelog ==
+
+= 4.0.1 =
+* Tested against WordPress 6.2
 
 = 4.0.0 =
 * Bumped minimum PHP version to 7.4
