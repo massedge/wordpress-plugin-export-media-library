@@ -40,7 +40,7 @@ class MassEdgeWordPressPluginExportMediaLibraryDependencyCheck {
 			$this->adminNoticePluginDisabledMessage = sprintf( '%s Disabled plugin to avoid further issues.', $message );
 			add_action( 'admin_notices', array( $this, 'adminNoticePluginDisabled' ) );
 		} else {
-			echo $message;
+			echo esc_html( $message );
 			die();
 		}
 
