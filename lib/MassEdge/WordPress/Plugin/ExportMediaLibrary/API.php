@@ -42,7 +42,7 @@ class API {
 	static function export( array $options = array() ) {
 		$options = array_merge( self::defaultExportOptions(), $options );
 
-		if ( $options['root_path'] === null ) {
+		if ( null === $options['root_path'] ) {
 			// default to `filename` without extension
 			$options['root_path'] = pathinfo( $options['filename'], PATHINFO_FILENAME );
 		}
@@ -86,7 +86,7 @@ class API {
 						if ( substr( $attachmentPath, 0, strlen( $options['upload_basedir'] ) ) === $options['upload_basedir'] ) {
 							$file = substr( $attachmentPath, strlen( $options['upload_basedir'] ) + 1 );
 						} else {
-							if ( 0 == strpos( $attachmentPath, '/' ) ) {
+							if ( 0 === strpos( $attachmentPath, '/' ) ) {
 								$file = substr( $attachmentPath, 1 );
 							} elseif ( preg_match( '|^.:\\\|', $attachmentPath ) ) {
 								$file = substr( $attachmentPath, 3 );
@@ -103,8 +103,8 @@ class API {
 						$ext      = pathinfo( $file, PATHINFO_EXTENSION );
 
 						// append a number to file name, of another with same name is already present
-						for ( $i = 0; in_array( $file, $flatFilenames ); $i++ ) {
-							$file = $filename . $i . ( ( $ext !== null ) ? '.' . $ext : '' );
+						for ( $i = 0; in_array( $file, $flatFilenames, true ); $i++ ) {
+							$file = $filename . $i . ( ( null !== $ext ) ? '.' . $ext : '' );
 						}
 
 						// keep track of file name, so another file doesn't over write it
@@ -190,7 +190,7 @@ class API {
 
 	private static function getUploadBasedir() {
 		$uploads = wp_get_upload_dir();
-		if ( $uploads['error'] !== false ) {
+		if ( false !== $uploads['error'] ) {
 			throw new \Exception( $uploads['error'] );
 		}
 		return $uploads['basedir'];

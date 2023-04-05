@@ -51,7 +51,7 @@ class AdminPageExport extends Base {
 				// set folder structure
 				$folderStructure = (
 					empty( $_POST[ self::FIELD_FOLDER_STRUCTURE ] ) ||
-					! in_array( $_POST[ self::FIELD_FOLDER_STRUCTURE ], array( API::FOLDER_STRUCTURE_NESTED, API::FOLDER_STRUCTURE_FLAT ) )
+					! in_array( $_POST[ self::FIELD_FOLDER_STRUCTURE ], array( API::FOLDER_STRUCTURE_NESTED, API::FOLDER_STRUCTURE_FLAT ), true )
 				)
 				? API::FOLDER_STRUCTURE_NESTED
 				: $_POST['folder_structure'];
