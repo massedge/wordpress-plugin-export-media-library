@@ -40,7 +40,9 @@ class API {
 	 * @return void
 	 */
 	static function export( array $options = array() ) {
-		$options = array_merge( self::defaultExportOptions(), $options );
+		$defaultOptions         = self::defaultExportOptions();
+		$options                = array_merge( $defaultOptions, $options );
+		$options['query_args'] = array_merge( $defaultOptions['query_args'], $options['query_args'] );
 
 		if ( null === $options['root_path'] ) {
 			// default to `filename` without extension

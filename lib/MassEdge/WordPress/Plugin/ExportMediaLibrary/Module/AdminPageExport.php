@@ -59,12 +59,18 @@ class AdminPageExport extends Base {
 				// set compress option
 				$compress = ! empty( $_POST[ self::FIELD_COMPRESS ] );
 
+				$queryArgs = array();
+				if ( ! current_user_can( 'edit_others_posts' ) ) {
+					$queryArgs['author'] = get_current_user_id();
+				}
+
 				try {
 					API::export(
 						array(
 							'filename'                 => $filename,
 							'folder_structure'         => $folderStructure,
 							'compress'                 => $compress,
+							'query_args'               => $queryArgs,
 							'add_attachment_callback'  => function( $value, $params ) {
 								return apply_filters( 'massedge-wp-eml/export/add_attachment', $value, $params );
 							},
